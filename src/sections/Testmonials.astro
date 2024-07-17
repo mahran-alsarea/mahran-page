@@ -1,0 +1,101 @@
+---
+import { Image } from "astro:assets";
+import TestmonialsSlide from "../components/testmonialsSlider.astro";
+import { testmoniels } from "../data.ts";
+---
+
+<section id="testmoniels">
+  <div class="content-wrapper">
+    <h2>أراء العملاء</h2>
+    <div class="wrapper">
+      <TestmonialsSlide testmoniels={testmoniels} />
+    </div>
+  </div>
+  <Image src={import("../assets/testmonials.png")} alt="workers" />
+</section>
+
+<style>
+  section {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    color: white;
+  }
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: var(--icon-secondary-accent-heavy, #006ba6);
+    padding: var(--container-inline);
+  }
+  h2 {
+    font-size: 3rem;
+    align-self: flex-start;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    isolation: isolate;
+  }
+
+  h2::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 110%;
+    background: var(--icon-primary-accent-heavy, #f9710d);
+    height: 0.5em;
+    transform: rotate(-15deg); /* Adjust the angle as needed */
+    transform-origin: right;
+    z-index: -1;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .wrapper {
+    position: relative;
+    padding: 1.5rem;
+    position: relative;
+    max-height: 260px;
+    border-radius: var(--borderRadius-sm, 10px);
+    background: var(--bg-primary-light, #fff);
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    margin-inline: 7rem -7rem;
+    z-index: 1;
+    height: 100%;
+    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+    width: calc(420px+1.5rem);
+  }
+  @media screen and (max-width: 720px) {
+    section {
+      display: block;
+      position: relative;
+    }
+    .wrapper {
+      margin-inline: revert;
+      /* height: 120px; */
+    }
+    h2 {
+      font-size: 1.5rem;
+      align-self: center;
+    }
+    .content-wrapper {
+      width: 90%;
+      gap: 2rem;
+      position: absolute;
+      bottom: -5%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      padding: revert;
+      padding-block-start: 1rem;
+      border-radius: var(--borderRadius-sm, 10px);
+    }
+    img {
+      padding-block-end: 3rem;
+    }
+  }
+</style>

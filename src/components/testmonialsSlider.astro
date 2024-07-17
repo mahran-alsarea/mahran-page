@@ -1,0 +1,208 @@
+---
+import { Icon } from "astro-icon/components";
+interface Props {
+  testmoniels: { name: string; text: string; avatar: string }[];
+}
+const { testmoniels } = Astro.props;
+---
+
+<ul>
+  {
+    testmoniels.map((testmonial, idx) => (
+      <>
+        <li id={`testmonial-${idx}`}>
+          <p>{testmonial.text}</p>
+          <figure>
+            <Icon name={testmonial.avatar} />
+            <figcaption>{testmonial.name}</figcaption>
+          </figure>
+        </li>
+      </>
+    ))
+  }
+  <button class="next">&gt;</button>
+  <button class="prev">&lt;</button>
+</ul>
+<div class="slider-nav" data-testmonialsLenght={testmoniels.length - 1}>
+  {
+    testmoniels.map((_, idx) => (
+      <label>
+        <input
+          type="radio"
+          name="active-testmonial"
+          checked={idx == 0 ? "true" : false}
+          onclick={`window.location.assign("#testmonial-${idx}")`}
+          id={`itestmonial-${idx}`}
+        />
+        <a href={`#testmonial-${idx}`} aria-label={"show testmonial " + idx} />
+      </label>
+    ))
+  }
+</div>
+<script>
+  const maxValue =
+    //@ts-expect-error
+    document.querySelector(".slider-nav")?.dataset.testmonialslenght;
+  console.log(maxValue);
+  function updateUrlParam(increment: boolean, maxValue: number) {
+    const url = new URL(window.location.href);
+    let paramValue = parseInt(url.hash.split("-")[1]) || 0;
+
+    if (increment) {
+      paramValue = Math.min(paramValue + 1, maxValue);
+    } else {
+      paramValue = Math.max(paramValue - 1, 0);
+    }
+
+    url.hash = `#testmonial-${paramValue}`;
+    window.location.href = url.href;
+    const radio = document.querySelector("#i" + url.hash.replace("#", ""));
+    //@ts-expect-error
+    radio.checked = true;
+  }
+
+  // Add event listeners to .next and .prev buttons
+  document.addEventListener("DOMContentLoaded", () => {
+    const nextButton = document.querySelector(".next");
+    const prevButton = document.querySelector(".prev");
+
+    nextButton?.addEventListener("click", () => updateUrlParam(true, maxValue));
+    prevButton?.addEventListener("click", () =>
+      updateUrlParam(false, maxValue),
+    );
+  });
+</script>
+<style>
+  .next {
+    font-size: 1.5rem;
+    color: var(--icon-primary-accent-heavy, #f9710d);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0.5rem;
+    border: none;
+    background: none;
+  }
+  .prev {
+    font-size: 1.5rem;
+    color: var(--icon-primary-accent-heavy, #f9710d);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.5rem;
+    border: none;
+    background: none;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: stretch;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; /* Hide scrollbar IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    height: 100%;
+    width: 420px;
+  }
+  li {
+    color: gray;
+    list-style: none;
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    scroll-margin-top: 50dvh;
+    position: relative;
+  }
+  .slider-nav {
+    display: flex;
+    column-gap: 0.5rem;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .slider-nav label {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 24px;
+    background-color: black;
+    opacity: 0.75;
+    transition: opacity ease 250ms;
+  }
+
+  /*  for increasing clicable area  */
+  .slider-nav label:before {
+    content: "";
+    position: absolute;
+    width: 2.5rem;
+    height: 3rem;
+    top: -250%;
+    cursor: pointer;
+  }
+  input[type="radio"] {
+    visibility: hidden;
+  }
+
+  .slider-nav label {
+    opacity: 1;
+    transform: scale(1.2);
+    color: var(--icon-primary-accent-heavy, #f9710d);
+    background-color: gray;
+  }
+  .slider-nav > label:hover {
+    opacity: 1;
+    background-color: var(--icon-primary-accent-heavy, #f9710d);
+    border: 4px var(--icon-primary-accent-heavy, #f9710d) solid;
+  }
+  .slider-nav > label:has(input:checked) {
+    opacity: 1;
+    background-color: var(--icon-primary-accent-heavy, #f9710d);
+  }
+  p {
+    color: var(--text-primary-heavy, #212529);
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 150%;
+  }
+  [data-icon] {
+    box-sizing: border-box;
+    padding: 0.35rem;
+    border-radius: 50%;
+    background: var(--icon-secondary-accent-heavy, #006ba6);
+    width: 48px;
+    height: 48px;
+  }
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  figcaption {
+    color: var(--text-primary-accent-heavy, #f9710d);
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  @media screen and (max-width: 720px) {
+    .content-wrapper {
+      width: 90%;
+      gap: 2rem;
+      position: absolute;
+      bottom: -5%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      padding: revert;
+      padding-block-start: 1rem;
+      border-radius: var(--borderRadius-sm, 10px);
+    }
+  }
+</style>

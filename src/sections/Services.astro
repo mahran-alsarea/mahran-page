@@ -1,0 +1,151 @@
+---
+import { Icon } from "astro-icon/components";
+const services = [
+  {
+    title: "النقل السكني",
+    desc: "نحن نقدم خدمات نقل شاملة للمنازل، تشمل التعبئة والنقل والتفريغ. سواء كنت تنتقل داخل المدينة أو إلى مدينة جديدة، فريقنا محترف ومدرب لضمان نقل آمن وسلس.",
+  },
+  {
+    title: "النقل التجاري",
+    desc: "نحن متخصصون في نقل المكاتب والشركات، مما يضمن الحد الأدنى من التوقف في العمل. نقدم حلول نقل مخصصة تلبي احتياجات عملك، بما في ذلك التعبئة والنقل وإعادة التنظيم في الموقع الجديد.",
+  },
+  {
+    title: "التعبئة و التغليف",
+    desc: "نحن نقدم خدمة التعبئة والتغليف الكاملة باستخدام مواد عالية الجودة لضمان حماية ممتلكاتك أثناء النقل. فريقنا مدرب على التعامل مع جميع أنواع العناصر، من الهشة إلى الكبيرة.",
+  },
+  {
+    title: "نقل الأثاث",
+    desc: "نقدم خدمات تخزين آمنة ومؤقتة للأثاث والممتلكات. سواء كنت بحاجة لتخزين مؤقت أو طويل الأمد، مستودعاتنا مؤمنة ومجهزة لحماية ممتلكاتك.",
+  },
+  {
+    title: "فك و تركيب الأثاث",
+    desc: "نحن نقدم خدمات فك وتركيب الأثاث كجزء من عملية النقل. فريقنا مدرب على التعامل مع جميع أنواع الأثاث لضمان عدم تعرضه لأي ضرر أثناء التفكيك أو التركيب.",
+  },
+  {
+    title: "النقل الدولي",
+    desc: "نوفر خدمات النقل الدولي، مما يضمن تجربة نقل خالية من المتاعب عبر الحدود. نحن نعتني بجميع التفاصيل اللوجستية لضمان وصول ممتلكاتك بأمان وفي الوقت المحدد.",
+  },
+];
+---
+
+<div style="position:relative;">
+  <section id="services">
+    <div class="after-shape"></div>
+    <div class="before-shape"></div>
+    <div class="wrapper">
+      <h2>خدماتنا</h2>
+      <ul>
+        {
+          services.map((service) => (
+            <li>
+              <Icon name="factory" />
+              <h3>{service.title}</h3>
+              <p>{service.desc}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</div>
+<style>
+  section {
+    background: var(--bg-primary-medium, #f8f9fa);
+  }
+  .after-shape {
+    position: absolute;
+    top: 30px;
+    left: -10%;
+    width: 200px;
+    height: 200px;
+    background-color: var(--icon-primary-accent-heavy, #f9710d);
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    border-radius: 15%;
+    transform: rotate(-45deg);
+  }
+  .before-shape {
+    position: absolute;
+    bottom: 10%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    background-color: var(--icon-primary-accent-heavy, #f9710d);
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    border-radius: 15%;
+    transform: rotate(45deg);
+  }
+
+  div.wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--container-width);
+    padding: var(--container-inline);
+    margin-inline: auto;
+  }
+  h2 {
+    align-self: center;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    isolation: isolate;
+  }
+
+  h2::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 110%;
+    background: var(--orange-O50, #fef1e7);
+    height: 0.5em;
+    transform: rotate(-15deg); /* Adjust the angle as needed */
+    transform-origin: right;
+    z-index: -1;
+  }
+  ul {
+    isolation: isolate;
+    padding-block: 1.5rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 480px) {
+    ul {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    }
+  }
+
+  @media (min-width: 720px) {
+    ul {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
+    }
+  }
+  li {
+    /* max-width: 600px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1.5rem;
+    border-radius: var(--borderRadius-sm, 10px);
+    background: #fff;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+  }
+  [data-icon] {
+    box-sizing: border-box;
+    padding: 0.25rem;
+    border-radius: 50%;
+    background: var(--icon-primary-accent-heavy, #f9710d);
+    width: 48px;
+    height: 48px;
+  }
+  p {
+    text-align: right;
+    font-size: 16px;
+    line-height: 34px; /* 212.5% */
+  }
+</style>

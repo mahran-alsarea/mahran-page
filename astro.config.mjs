@@ -1,8 +1,13 @@
 import { defineConfig } from "astro/config";
 
 import icon from "astro-icon";
+import lqip from "vite-plugin-lqip";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [icon()]
+  vite: {
+    plugins: [lqip()],
+  },
+
+  integrations: [icon()],
 });

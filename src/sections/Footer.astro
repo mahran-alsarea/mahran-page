@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import { socials } from "../data.ts";
+---
+
+<footer>
+  <div class="wrapper">
+    <Image
+      src={import("../assets/white-logo.png")}
+      alt="speed star logo"
+      height="67"
+    />
+    <p>
+      تختار شركتنا لنقل وتركيب الأثاث في جدة بالمملكة العربية السعودية بسبب جودة
+      خدماتنا وموثوقيتها. يتميز فريقنا المحترف بالخبرة والتدريب، مع التزامنا
+      بالمواعيد والتسليم في الوقت المناسب. نستخدم تقنيات حديثة ومعدات متقدمة
+      لضمان سلامة الأثاث خلال عمليات النقل. بأسعار تنافسية، نقدم تجربة خدمة
+      مريحة تلبي احتياجات وتوقعات عملائنا بكفاءة وأمان.
+    </p>
+    <ul>
+      تابعنا {
+        socials.map((social) => (
+          <li>
+            <a href={social.link}>
+              <Icon name={social.name} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <p class="ff">© 2024 شركة سبيد ستار</p>
+</footer>
+<style>
+  footer {
+    background: var(--bg-secondary-accent-heavy, #006ba6);
+    color: #fff;
+  }
+  div.wrapper {
+    max-width: var(--container-width);
+    padding: var(--container-inline);
+    margin-inline: auto;
+    background: var(--bg-secondary-accent-heavy, #006ba6);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ff {
+    background: var(--icon-primary-accent-heavy, #f9710d);
+    text-align: center;
+    padding: 1rem;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+  }
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  ul {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+  }
+  li:hover {
+    color: orange;
+  }
+
+  [data-icon]:hover {
+    stroke: orange;
+  }
+</style>

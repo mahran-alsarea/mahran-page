@@ -1,0 +1,66 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../sections/Hero.astro";
+import ContactUs from "../sections/ContactUs.astro";
+import Footer from "../sections/Footer.astro";
+---
+
+<MainLayout
+  title="سبيد ستار … افضل شركة شحن في جده"
+  disc="سبيد ستار … افضل شركة شحن في جده "
+  lang="ar"
+>
+  <Hero />
+  <Nav />
+  <ContactUs />
+  <Footer />
+</MainLayout>
+<style is:global>
+  :root {
+    --sm: 480px;
+    --md: 720px;
+    --container-width: 1240px;
+    --container-inline: 1.5rem;
+  }
+  html,
+  body {
+    font-family: Cairo;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  body {
+    position: relative;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* .container { */
+  /*   display: grid; */
+  /*   grid-template-columns: [full-start] 1fr [content-start] 1240px [content-end] 1fr [full-end]; */
+  /* } */
+  /**/
+  /* .container > * { */
+  /*   grid-column: content; */
+  /* } */
+  /**/
+  /* .container > .full-bleed { */
+  /*   grid-column: full; */
+  /* } */
+  /**/
+  /* @media screen and (max-width: var(--md)) { */
+  /*   .container { */
+  /*     display: grid; */
+  /*     grid-template-columns: 18px 1fr 18px; */
+  /*     grid-template-areas: */
+  /*       ". content ." */
+  /*       "full full full"; */
+  /*   } */
+  /* } */
+</style>
