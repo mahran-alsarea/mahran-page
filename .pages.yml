@@ -7,17 +7,19 @@ content:
       - name: contact
         label: contact info
         type: object
-        list: true
         fields:
           - name: waNum
+            label:رقم الواتساب
             type: string
           - name: phoneNum
-            type: string
-          - name: phoneNum
+            label:رقم الهاتف
             type: string
           - name: formLink
+            hidden:true
+            default:wa.me/+
             type: string
           - name: locatoin
+            label:الموقع
             type: string
       - name: socials
         label: socials
@@ -25,26 +27,33 @@ content:
         list: true
         fields:
           - name: name
-            type: string
+            options:
+              values:[facebook,instagram,whatsapp,x ]
           - name: link
+            label:الرابط
             type: string
-      - name: testmonials
-        label: testmonials
+      - name: testmoniels
+        label: الأراء
         type: object
         list: true
         fields:
           - name: name
+            label:الأسم
             type: string
           - name: text
+            label:الرأي
             type: string
           - name: avatar
             type: string
+            hidden:true
       - name: services
         label: services
         type: object
         list: true
         fields:
           - name: title
+            label:الخدمة
             type: string
-          - name: description
+          - name: desc
+            label: الوصف
             type: string
