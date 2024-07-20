@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import TestmonialsSlide from "../components/testmonialsSlider.astro";
-import { testmoniels } from "../data.ts";
+const data = await Astro.glob("../data.md");
+const { testmoniels } = data[0].frontmatter;
 ---
 
 <section id="testmoniels">

@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import { socials } from "../data.ts";
+const data = await Astro.glob("../data.md");
+const { socials } = data[0].frontmatter;
 ---
 
 <footer>

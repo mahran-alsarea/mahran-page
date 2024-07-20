@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { formLink } from "../data.ts";
+const data = await Astro.glob("../data.md");
+const { formLink } = data[0].frontmatter.contact;
 ---
 
 <section id="contactus">

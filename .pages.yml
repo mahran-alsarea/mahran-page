@@ -1,0 +1,50 @@
+content:
+  - name: about
+    label: data
+    type: file
+    path: src/data.md
+    fields:
+      - name: contact
+        label: contact info
+        type: object
+        list: true
+        fields:
+          - name: waNum
+            type: string
+          - name: phoneNum
+            type: string
+          - name: phoneNum
+            type: string
+          - name: formLink
+            type: string
+          - name: locatoin
+            type: string
+      - name: socials
+        label: socials
+        type: object
+        list: true
+        fields:
+          - name: name
+            type: string
+          - name: link
+            type: string
+      - name: testmonials
+        label: testmonials
+        type: object
+        list: true
+        fields:
+          - name: name
+            type: string
+          - name: text
+            type: string
+          - name: avatar
+            type: string
+      - name: services
+        label: services
+        type: object
+        list: true
+        fields:
+          - name: title
+            type: string
+          - name: description
+            type: string

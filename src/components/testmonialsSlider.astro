@@ -43,7 +43,6 @@ const { testmoniels } = Astro.props;
   const maxValue =
     //@ts-expect-error
     document.querySelector(".slider-nav")?.dataset.testmonialslenght;
-  console.log(maxValue);
   function updateUrlParam(increment: boolean, maxValue: number) {
     const url = new URL(window.location.href);
     let paramValue = parseInt(url.hash.split("-")[1]) || 0;

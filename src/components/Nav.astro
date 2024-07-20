@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { phoneNum, location } from "../data";
+const data = await Astro.glob("../data.md");
+const { phoneNum, location } = data[0].frontmatter.contact;
 ---
 
 <div class="wrapper">
