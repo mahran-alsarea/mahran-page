@@ -5,32 +5,33 @@ content:
     path: src/data.md
     fields:
       - name: contact
-        label: contact info
         type: object
+        label: contact info
         fields:
           - name: waNum
-            label:رقم الواتساب
             type: string
+            label: رقم الواتساب
           - name: phoneNum
-            label:رقم الهاتف
             type: string
+            label: رقم الهاتف
           - name: formLink
-            hidden:true
-            default:wa.me/+
             type: string
+            hidden: true
+            default: wa.me/+
           - name: locatoin
-            label:الموقع
             type: string
+            label: الموقع
       - name: socials
         label: socials
         type: object
         list: true
         fields:
           - name: name
+            type: string
             options:
-              values:[facebook,instagram,whatsapp,x ]
+              values: [facebook, instagram, whatsapp, x]
           - name: link
-            label:الرابط
+            label: الرابط
             type: string
       - name: testmoniels
         label: الأراء
@@ -38,22 +39,22 @@ content:
         list: true
         fields:
           - name: name
-            label:الأسم
             type: string
+            label: الأسم
           - name: text
-            label:الرأي
             type: string
+            label: الرأي
           - name: avatar
             type: string
-            hidden:true
+            hidden: true
       - name: services
         label: services
         type: object
         list: true
         fields:
           - name: title
-            label:الخدمة
             type: string
+            label: الخدمة
           - name: desc
-            label: الوصف
             type: string
+            label: الوصف
