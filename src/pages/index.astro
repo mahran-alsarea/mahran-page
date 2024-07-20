@@ -6,8 +6,8 @@ import About from "../sections/About.astro";
 import Services from "../sections/Services.astro";
 import Testmonials from "../sections/Testmonials.astro";
 import ContactUs from "../sections/ContactUs.astro";
-
 import Footer from "../sections/Footer.astro";
+import Wa from "../components/Wa.astro";
 ---
 
 <MainLayout
@@ -22,6 +22,7 @@ import Footer from "../sections/Footer.astro";
   <Testmonials />
   <ContactUs />
   <Footer />
+  <Wa />
 </MainLayout>
 <style is:global>
   :root {
@@ -45,27 +46,4 @@ import Footer from "../sections/Footer.astro";
     padding: 0;
     margin: 0;
   }
-
-  /* .container { */
-  /*   display: grid; */
-  /*   grid-template-columns: [full-start] 1fr [content-start] 1240px [content-end] 1fr [full-end]; */
-  /* } */
-  /**/
-  /* .container > * { */
-  /*   grid-column: content; */
-  /* } */
-  /**/
-  /* .container > .full-bleed { */
-  /*   grid-column: full; */
-  /* } */
-  /**/
-  /* @media screen and (max-width: var(--md)) { */
-  /*   .container { */
-  /*     display: grid; */
-  /*     grid-template-columns: 18px 1fr 18px; */
-  /*     grid-template-areas: */
-  /*       ". content ." */
-  /*       "full full full"; */
-  /*   } */
-  /* } */
 </style>

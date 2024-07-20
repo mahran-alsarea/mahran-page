@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section>
+  <article>
+    <Image src={import("../assets/Desktop.png")} alt="workers" />
+    <div class="content-wrapper">
+      <h3>نصائح للحفاظ على سلامة الاثاث أثناء النقل</h3>
+      <p>
+        استخدام وسائل الحماية مثل بطانات الأرضية والبطانات الواقية لحماية الأثاث
+        من الخدوش والصدمات. قم بفك أجزاء الأثاث القابلة للفك وتغليفها بشكل منفصل
+        لتجنب التلف. استخدام الحبال وأحزمة الرباط بإحكام لتثبيت الأثاث في
+        الشاحنة أثناء النقل. تجنب وضع الأثاث الثقيل فوق الأثاث الهش لتجنب التلف.
+      </p>
+    </div>
+  </article>
+  <article>
+    <Image src={import("../assets/Desktop1.png")} alt="workers" />
+    <div class="content-wrapper">
+      <h3>اخطاء تقع بقا شركات نقل العفش</h3>
+      <p>
+        قلة الخبرة والمهارة: عدم وجود خبرة كافية يمكن أن يؤدي إلي إتلاف الأثاث
+        أو تعرضة للخدش والكسر. سوءالتخطيط: عدم وجود تخطيط جيد قبل عملية النقل
+        يمكن أن يؤدي إلي تأخير وعرقلة العملية بشكل عام. يجب علي الشركة زيارة
+        الموقع وتقدير حجم الأثاث وتحديد عدد العمالة والمعدات المطلوية مسبقًا.
+        عدم استخدام المعدات السليمة. قد تقع بعض الشركات في خطأ عدم استخدام
+        المعدات اللازمة في عملية النقل. من المهم استخدام أدوات التعبئة والتغليف
+        الصحيحة والمعدات المناسبة لنقل الأثاث بأمان وسهولة
+      </p>
+    </div>
+  </article>
+</section>
+<style>
+  h3 {
+    color: var(--CoolGray-90, #21272a);
+    text-align: right;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+  }
+  p {
+    color: var(--CoolGray-90, #21272a);
+    text-align: right;
+    font-family: Cairo;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: var(--container-width);
+    padding: var(--container-inline);
+    margin-inline: auto;
+  }
+  article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex: 1;
+  }
+  .content-wrapper {
+    flex: 1;
+  }
+  article:nth-of-type(2) {
+    flex-direction: row-reverse;
+  }
+  @media (max-width: 840px) {
+    section article {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -17,10 +17,10 @@ const { phoneNum, location } = data[0].frontmatter.contact;
     </div>
 
     <ul>
-      <li><a href="#home">الرئيسية</a></li>
-      <li><a href="#aboutus">من نحن</a></li>
-      <li><a href="#services">خدماتنا</a></li>
-      <li><a href="#testmoniels">اراء العملاء</a></li>
+      <li><a href="/#home">الرئيسية</a></li>
+      <li><a href="/#aboutus">من نحن</a></li>
+      <li><a href="/#services">خدماتنا</a></li>
+      <li><a href="/#testmoniels">اراء العملاء</a></li>
       <li><a href="/المدونة">المدونة</a></li>
       <li><a href={location}> موقعنا</a></li>
     </ul>
@@ -109,6 +109,16 @@ const { phoneNum, location } = data[0].frontmatter.contact;
     direction: ltr;
     display: none;
     transition: 0.3s ease transform;
+    cursor: pointer;
+    position: relative;
+  }
+  /* increase clickable area */
+  label:before {
+    content: "";
+    position: absolute;
+    width: 4.5rem;
+    height: 4.5rem;
+    top: 10%;
     cursor: pointer;
   }
 

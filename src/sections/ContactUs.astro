@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 const data = await Astro.glob("../data.md");
-const { formLink } = data[0].frontmatter.contact;
+const { formLink, waNum } = data[0].frontmatter.contact;
 ---
 
 <section id="contactus">
@@ -9,7 +9,7 @@ const { formLink } = data[0].frontmatter.contact;
   <div class="wrapper">
     <h2>هل لديك خطه للنقل ؟</h2>
     <p>نحن هنا لمساعدتك</p>
-    <form id="contact_form" data-formLink={formLink}>
+    <form id="contact_form" data-formLink={formLink + waNum}>
       <label
         >الإسم
         <input

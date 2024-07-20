@@ -2,8 +2,14 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Nav from "../components/Nav.astro";
 import Hero from "../sections/Hero.astro";
+import Main from "../sections/Main.astro";
+import WhyUs from "../sections/WhyUs.astro";
+import Advices from "../sections/Advices.astro";
+import BlogCta from "../sections/BlogCta.astro";
+import Desktop from "../sections/DesktopText.astro";
 import ContactUs from "../sections/ContactUs.astro";
 import Footer from "../sections/Footer.astro";
+import Wa from "../components/Wa.astro";
 ---
 
 <MainLayout
@@ -13,8 +19,14 @@ import Footer from "../sections/Footer.astro";
 >
   <Hero />
   <Nav />
+  <Main />
+  <Advices />
+  <WhyUs />
+  <BlogCta />
+  <Desktop />
   <ContactUs />
   <Footer />
+  <Wa />
 </MainLayout>
 <style is:global>
   :root {

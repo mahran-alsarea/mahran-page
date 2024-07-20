@@ -58,3 +58,17 @@ content:
           - name: desc
             type: string
             label: الوصف
+      - name: features
+        label: features
+        type: object
+        list: true
+        fields:
+          - name: title
+            type: string
+            label: العنوان
+          - name: desc
+            type: string
+            label: الوصف
+          - name: icon
+            type: string
+            label: ايقونه

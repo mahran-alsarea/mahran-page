@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon/components";
+const data = await Astro.glob("../data.md");
+const { formLink, waNum } = data[0].frontmatter.contact;
+---
+
+<a href={formLink + waNum}>
+  <Icon name="whatsapp" />
+</a>
+<style>
+  [data-icon] {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    padding: 0.5rem;
+  }
+</style>

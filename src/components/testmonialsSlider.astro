@@ -102,7 +102,7 @@ const { testmoniels } = Astro.props;
     -ms-overflow-style: none; /* Hide scrollbar IE and Edge */
     scrollbar-width: none; /* Hide scrollbar Firefox */
     height: 100%;
-    width: 420px;
+    /* width: 420px; */
   }
   li {
     color: gray;
@@ -113,7 +113,7 @@ const { testmoniels } = Astro.props;
     flex-direction: column;
     justify-content: space-around;
     gap: 0.5rem;
-    padding: 1.5rem;
+    padding: 1rem;
     scroll-margin-top: 50dvh;
     position: relative;
   }
@@ -171,6 +171,7 @@ const { testmoniels } = Astro.props;
     font-size: 1rem;
     font-weight: 400;
     line-height: 150%;
+    line-break: auto;
   }
   [data-icon] {
     box-sizing: border-box;

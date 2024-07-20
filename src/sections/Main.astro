@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+---
+
+<main>
+  <div>
+    <Image
+      src={import("../assets/blogIntro/main.png")}
+      alt="delivary stock image"
+    />
+    <div class="content-wrapper">
+      <h2>سبيد ستار للنقل الاثاث</h2>
+      <p>
+        تختار <mark>شركتنا</mark> لنقل الاثاث في جدة بالمملكة العربية السعوديه بسبب
+        جودة خدماتنا وموثوقيتها. يتميز فريقنا المحترم بالخبرة والتدريب, مع التزامنا
+        بالمواعيد والتسليم في الوقت المناسب والمدد . نستخدم تقنيات حديثة ومعدات متقدمة
+        لضمان سلامة الاثاث خلال عمليات النقل. بأسعار تنافسية نقدم تجربة خدمة مريجة
+        تلبي احتياجات وتوقعات عملائنا بكفاءة وامان.
+      </p>
+    </div>
+  </div>
+  <div class="images-wrapper">
+    <Image
+      src={import("../assets/blogIntro/1.png")}
+      alt="delivary stock image"
+    />
+    <Image
+      src={import("../assets/blogIntro/2.png")}
+      alt="delivary stock image"
+    />
+    <Image
+      src={import("../assets/blogIntro/3.png")}
+      alt="delivary stock image"
+    />
+  </div>
+</main>
+<style>
+  main {
+    max-width: var(--container-width);
+    padding: var(--container-inline);
+    margin-inline: auto;
+    display: flex;
+    gap: 1rem;
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .images-wrapper img {
+    padding-block-end: 1rem;
+  }
+  @media (max-width: 840px) {
+    .images-wrapper {
+      display: none;
+    }
+  }
+  h2 {
+    color: var(--text-secondary-accent-heavy, #006ba6);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  p {
+    color: var(--text-primary-heavy, #212529);
+    text-align: right;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .content-wrapper {
+    padding-block-start: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  mark {
+    color: var(--text-primary-accent-heavy, #f9710d);
+    font-weight: 600;
+    background: unset;
+  }
+</style>
