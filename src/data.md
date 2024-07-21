@@ -11,6 +11,8 @@ socials:
     link: https://instagram.com
   - name: whatsapp
     link: https://wa.me/+9660567995238
+  - name: phone
+    link: tel:0564849460
 testmoniels:
   - name: معتز العقيل
     text: سرعة في التجاوب و خلصين في عملهم
