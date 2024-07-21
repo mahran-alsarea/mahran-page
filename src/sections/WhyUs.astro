@@ -5,24 +5,46 @@ const data = await Astro.glob("../data.md");
 const { features } = data[0].frontmatter;
 ---
 
-<section>
-  <p>لماذا تختارنا</p>
-  <h3>يختارنا الناس لأننا نخدم الأفضل للجميع</h3>
-  <ul>
-    {
-      features.map((feature) => (
-        <li>
-          <Icon name={feature.icon} />
-          <div>
-            <h3>{feature.title}</h3>
-            <p>{feature.desc}</p>
-          </div>
-        </li>
-      ))
-    }
-  </ul>
-</section>
+<div style="position:relative;">
+  <section>
+    <Icon name="grid" class="after-shape" />
+    <Icon name="polygon" class="before-shape" />
+    <p>لماذا تختارنا</p>
+    <h3>يختارنا الناس لأننا نخدم الأفضل للجميع</h3>
+    <ul>
+      {
+        features.map((feature) => (
+          <li>
+            <Icon name={feature.icon} class="icon" />
+            <div>
+              <h3>{feature.title}</h3>
+              <p>{feature.desc}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</div>
 <style>
+  .after-shape {
+    position: absolute;
+    top: -20px;
+    left: -40px;
+    width: 200px;
+    height: 200px;
+    z-index: -1;
+  }
+  .before-shape {
+    position: absolute;
+    bottom: 90px;
+    right: -70px;
+    width: 200px;
+    height: 200px;
+    transform: rotate(25deg) scale(0.7);
+    z-index: -1;
+  }
+
   section {
     display: flex;
     justify-content: center;
@@ -41,7 +63,7 @@ const { features } = data[0].frontmatter;
     padding-block: 2rem;
   }
 
-  [data-icon] {
+  [data-icon].icon {
     box-sizing: border-box;
     padding: 0.25rem;
     min-width: 70px;
@@ -73,6 +95,10 @@ const { features } = data[0].frontmatter;
   @media (max-width: 840px) {
     ul {
       grid-template-columns: 1fr;
+    }
+    .after-shape,
+    .before-shape {
+      visibility: hidden;
     }
   }
   section > p {

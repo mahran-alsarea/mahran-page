@@ -6,15 +6,15 @@ const { services } = data[0].frontmatter;
 
 <div style="position:relative;">
   <section id="services">
-    <div class="after-shape"></div>
-    <div class="before-shape"></div>
+    <Icon name="polygon" class="after-shape" />
+    <Icon name="polygon" class="before-shape" />
     <div class="wrapper">
       <h2>خدماتنا</h2>
       <ul>
         {
           services.map((service) => (
             <li>
-              <Icon name="factory" />
+              <Icon name="factory" class="icon" />
               <h3>{service.title}</h3>
               <p>{service.desc}</p>
             </li>
@@ -31,23 +31,17 @@ const { services } = data[0].frontmatter;
   .after-shape {
     position: absolute;
     top: 30px;
-    left: -10%;
+    left: -5%;
     width: 200px;
     height: 200px;
-    background-color: var(--icon-primary-accent-heavy, #f9710d);
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-    border-radius: 15%;
     transform: rotate(-45deg);
   }
   .before-shape {
     position: absolute;
-    bottom: 10%;
-    right: -10%;
+    bottom: 5%;
+    right: -5%;
     width: 200px;
     height: 200px;
-    background-color: var(--icon-primary-accent-heavy, #f9710d);
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-    border-radius: 15%;
     transform: rotate(45deg);
   }
 
@@ -111,7 +105,7 @@ const { services } = data[0].frontmatter;
     background: #fff;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
   }
-  [data-icon] {
+  [data-icon].icon {
     box-sizing: border-box;
     padding: 0.25rem;
     border-radius: 50%;
