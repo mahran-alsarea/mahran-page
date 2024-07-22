@@ -1,8 +1,12 @@
 ---
 import { Picture } from "astro:assets";
-import hero1 from "../assets/hero1.jpeg";
+import hero1 from "../assets/hero1d.png";
 //@ts-expect-error
-import img1Lqip from "../assets/hero1.jpeg?lqip";
+import img1Lqip from "../assets/hero1d.png?lqip";
+import hero2 from "../assets/hero2d.png";
+//@ts-expect-error
+import img2Lqip from "../assets/hero2d.png?lqip";
+const lqipUrl = `url(${img2Lqip.lqip})`;
 ---
 
 <header class="bleed">
@@ -17,6 +21,31 @@ import img1Lqip from "../assets/hero1.jpeg?lqip";
 
         backgroundSize: "cover",
       }}
+      class="image"
+    />
+    <Picture
+      formats={["avif", "webp"]}
+      src={hero2}
+      loading="eager"
+      alt="image for speedstart employe moving boxes"
+      style={{
+        backgroundImage: `url("${img2Lqip.lqip}")`,
+
+        backgroundSize: "cover",
+      }}
+      class="image"
+    />
+    <Picture
+      formats={["avif", "webp"]}
+      src={hero1}
+      loading="eager"
+      alt="image for speedstart employe moving boxes"
+      style={{
+        backgroundImage: `url("${img1Lqip.lqip}")`,
+
+        backgroundSize: "cover",
+      }}
+      class="image"
     />
   </div>
   <div class="text-container">
@@ -25,10 +54,10 @@ import img1Lqip from "../assets/hero1.jpeg?lqip";
     <a href="#contactus" class="cta">إبدأ معنا الأن</a>
   </div>
 </header>
-<style>
+<style define:vars={{ lqipUrl }}>
   header {
     position: relative;
-    height: 100dvh;
+    height: 100vh;
   }
   .text-container {
     width: 80%;
@@ -121,10 +150,12 @@ import img1Lqip from "../assets/hero1.jpeg?lqip";
     height: 100%;
     width: 100%;
     object-fit: cover;
-    background-color: lightgray;
-    background-position: center;
-    background-size: cover;
+    position: absolute;
+    background-image: var(--lqipUrl);
     background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    animation: change-img-anim 30s infinite;
   }
   .image-wrapper {
     position: relative;
@@ -133,15 +164,40 @@ import img1Lqip from "../assets/hero1.jpeg?lqip";
     overflow: hidden;
   }
 
-  .image-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--neutral-N900, #212529);
-    opacity: 0.6;
-    mix-blend-mode: multiply;
+  picture:nth-of-type(1) {
+    animation-delay: 0s;
   }
+  picture:nth-of-type(2) {
+    animation-delay: 10s;
+  }
+  picture:nth-of-type(3) {
+    animation-delay: 20s;
+  }
+
+  @keyframes change-img-anim {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* .image-wrapper::before { */
+  /*   content: ""; */
+  /*   position: absolute; */
+  /*   top: 0; */
+  /*   left: 0; */
+  /*   right: 0; */
+  /*   bottom: 0; */
+  /*   background-color: var(--neutral-N900, #212529); */
+  /*   opacity: 0.6; */
+  /*   mix-blend-mode: multiply; */
+  /* } */
 </style>

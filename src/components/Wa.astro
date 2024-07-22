@@ -4,7 +4,7 @@ const data = await Astro.glob("../data.md");
 const { formLink, waNum } = data[0].frontmatter.contact;
 ---
 
-<a href={formLink + waNum}>
+<a href={formLink + waNum} aria-label="contact us on whatsapp">
   <Icon name="whatsapp" />
 </a>
 <style>

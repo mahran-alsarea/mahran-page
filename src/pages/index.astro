@@ -8,11 +8,13 @@ import Testmonials from "../sections/Testmonials.astro";
 import ContactUs from "../sections/ContactUs.astro";
 import Footer from "../sections/Footer.astro";
 import Wa from "../components/Wa.astro";
+const data = await Astro.glob("../data.md");
+const { phoneNum } = data[0].frontmatter.contact;
 ---
 
 <MainLayout
-  title="سبيد ستار … افضل شركة شحن في جده"
-  disc="سبيد ستار … افضل شركة شحن في جده "
+  title={"سبيد ستار - افضل شركة شحن في جده " + phoneNum}
+  disc={"سبيد ستار - افضل شركة شحن في جده " + phoneNum}
   lang="ar"
 >
   <Hero />

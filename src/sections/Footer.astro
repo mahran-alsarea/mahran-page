@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 const data = await Astro.glob("../data.md");
 const { socials } = data[0].frontmatter;
+const { phoneNum } = data[0].frontmatter.contact;
 ---
 
 <footer>
@@ -23,13 +24,14 @@ const { socials } = data[0].frontmatter;
       تابعنا {
         socials.map((social) => (
           <li>
-            <a href={social.link}>
+            <a href={social.link} aria-label={"link to " + social.name}>
               <Icon name={social.name} />
             </a>
           </li>
         ))
       }
     </ul>
+    <p><a href={"tel:" + phoneNum}>تواصل معنا: {phoneNum}</a></p>
   </div>
   <p class="ff">© 2024 شركة سبيد ستار</p>
 </footer>
@@ -78,5 +80,9 @@ const { socials } = data[0].frontmatter;
   [data-icon]:hover {
     color: orange;
     stroke: orange;
+  }
+  a {
+    color: white;
+    text-decoration: none;
   }
 </style>
