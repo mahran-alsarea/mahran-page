@@ -20,8 +20,10 @@ const { testmoniels } = Astro.props;
       </>
     ))
   }
-  <button class="next">&gt;</button>
-  <button class="prev">&lt;</button>
+  {
+    /**  <button class="next">&gt;</button>
+<button class="prev">&lt;</button>**/
+  }
 </ul>
 <div class="slider-nav" data-testmonialsLenght={testmoniels.length - 1}>
   {
@@ -40,36 +42,36 @@ const { testmoniels } = Astro.props;
   }
 </div>
 <script>
-  const maxValue =
-    //@ts-expect-error
-    document.querySelector(".slider-nav")?.dataset.testmonialslenght;
-  function updateUrlParam(increment: boolean, maxValue: number) {
-    const url = new URL(window.location.href);
-    let paramValue = parseInt(url.hash.split("-")[1]) || 0;
-
-    if (increment) {
-      paramValue = Math.min(paramValue + 1, maxValue);
-    } else {
-      paramValue = Math.max(paramValue - 1, 0);
-    }
-
-    url.hash = `#testmonial-${paramValue}`;
-    window.location.href = url.href;
-    const radio = document.querySelector("#i" + url.hash.replace("#", ""));
-    //@ts-expect-error
-    radio.checked = true;
-  }
-
-  // Add event listeners to .next and .prev buttons
-  document.addEventListener("DOMContentLoaded", () => {
-    const nextButton = document.querySelector(".next");
-    const prevButton = document.querySelector(".prev");
-
-    nextButton?.addEventListener("click", () => updateUrlParam(true, maxValue));
-    prevButton?.addEventListener("click", () =>
-      updateUrlParam(false, maxValue),
-    );
-  });
+  //  const maxValue =
+  //    //@ts-expect-error
+  //    document.querySelector(".slider-nav")?.dataset.testmonialslenght;
+  //  function updateUrlParam(increment: boolean, maxValue: number) {
+  //    const url = new URL(window.location.href);
+  //    let paramValue = parseInt(url.hash.split("-")[1]) || 0;
+  //
+  //    if (increment) {
+  //      paramValue = Math.min(paramValue + 1, maxValue);
+  //    } else {
+  //      paramValue = Math.max(paramValue - 1, 0);
+  //    }
+  //
+  //    url.hash = `#testmonial-${paramValue}`;
+  //    window.location.href = url.href;
+  //    const radio = document.querySelector("#i" + url.hash.replace("#", ""));
+  //    //@ts-expect-error
+  //    radio.checked = true;
+  //  }
+  //
+  //  // Add event listeners to .next and .prev buttons
+  //  document.addEventListener("DOMContentLoaded", () => {
+  //    const nextButton = document.querySelector(".next");
+  //    const prevButton = document.querySelector(".prev");
+  //
+  //    nextButton?.addEventListener("click", () => updateUrlParam(true, maxValue));
+  //    prevButton?.addEventListener("click", () =>
+  //      updateUrlParam(false, maxValue),
+  //    );
+  //  });
 </script>
 <style>
   .next {
