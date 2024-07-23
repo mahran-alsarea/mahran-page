@@ -15,7 +15,7 @@ socials:
     link: tel:0564849460
 testmoniels:
   - name: معتز العقيل
-    text: سرعة في التجاوب و خلصين في عملهم
+    text: سرعة في التجاوب و مخلصين في عملهم
     avatar: avatar
   - name: علي ابو عمر
     text:
