@@ -6,7 +6,7 @@ interface Props {
 const { testmoniels } = Astro.props;
 ---
 
-<ul>
+<ul id="scroller">
   {
     testmoniels.map((testmonial, idx) => (
       <>
@@ -28,16 +28,11 @@ const { testmoniels } = Astro.props;
 <div class="slider-nav" data-testmonialsLenght={testmoniels.length - 1}>
   {
     testmoniels.map((_, idx) => (
-      <label>
-        <input
-          type="radio"
-          name="active-testmonial"
-          checked={idx == 0 ? "true" : false}
-          onclick={`window.location.assign("#testmonial-${idx}")`}
-          id={`itestmonial-${idx}`}
-        />
-        <a href={`#testmonial-${idx}`} aria-label={"show testmonial " + idx} />
-      </label>
+      <a
+        href={`#testmonial-${idx}`}
+        aria-label={"show testmonial " + idx}
+        aria-pressed={idx == 0 ? "true" : "false"}
+      />
     ))
   }
 </div>
@@ -72,6 +67,144 @@ const { testmoniels } = Astro.props;
   //      updateUrlParam(false, maxValue),
   //    );
   //  });
+</script>
+<script>
+  // via https://github.com/tootsuite/mastodon/blob/f59ed3a4fafab776b4eeb92f805dfe1fecc17ee3/app/javascript/mastodon/scroll.js
+  const easingOutQuint = (x, t, b, c, d) =>
+    c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+
+  function smoothScrollPolyfill(node, key, target) {
+    const startTime = Date.now();
+    const offset = node[key];
+    const gap = target - offset;
+    const duration = 1000;
+    let interrupt = false;
+
+    const step = () => {
+      const elapsed = Date.now() - startTime;
+      const percentage = elapsed / duration;
+
+      if (interrupt) {
+        return;
+      }
+
+      if (percentage > 1) {
+        cleanup();
+        return;
+      }
+
+      node[key] = easingOutQuint(0, elapsed, offset, gap, duration);
+      requestAnimationFrame(step);
+    };
+
+    const cancel = () => {
+      interrupt = true;
+      cleanup();
+    };
+
+    const cleanup = () => {
+      node.removeEventListener("wheel", cancel);
+      node.removeEventListener("touchstart", cancel);
+    };
+
+    node.addEventListener("wheel", cancel, { passive: true });
+    node.addEventListener("touchstart", cancel, { passive: true });
+
+    step();
+
+    return cancel;
+  }
+
+  function testSupportsSmoothScroll() {
+    let supports = false;
+    try {
+      let div = document.createElement("div");
+      div.scrollTo({
+        top: 0,
+        //@ts-expect-error
+        get behavior() {
+          supports = true;
+          return "smooth";
+        },
+      });
+    } catch (err) {} // Edge throws an error
+    return supports;
+  }
+
+  const hasNativeSmoothScroll = testSupportsSmoothScroll();
+
+  function smoothScroll(node, topOrLeft, horizontal) {
+    if (hasNativeSmoothScroll) {
+      return node.scrollTo({
+        [horizontal ? "left" : "top"]: topOrLeft,
+        behavior: "smooth",
+      });
+    } else {
+      return smoothScrollPolyfill(
+        node,
+        horizontal ? "scrollLeft" : "scrollTop",
+        topOrLeft,
+      );
+    }
+  }
+
+  function debounce(func, ms) {
+    let timeout;
+    return () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        timeout = null;
+        func();
+      }, ms);
+    };
+  }
+
+  const indicators = document.querySelectorAll(".slider-nav a");
+  const scroller = document.querySelector("#scroller ");
+  console.log(indicators, scroller);
+
+  function setAriaLabels() {
+    indicators.forEach((indicator, i) => {
+      indicator.setAttribute("aria-label", `Scroll to item #${i + 1}`);
+    });
+  }
+
+  function setAriaPressed(index) {
+    index = Math.abs(index);
+    indicators.forEach((indicator, i) => {
+      indicator.setAttribute("aria-pressed", String(!!(i === index)));
+      console.log({
+        indicator,
+        i,
+        index,
+        state: !!(i === index),
+        after: indicator.getAttribute("aria-pressed"),
+      });
+    });
+    window.location.assign(`#testmonial-${index}`);
+  }
+
+  indicators.forEach((indicator, i) => {
+    indicator.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setAriaPressed(i);
+      //@ts-expect-error
+      const scrollLeft = Math.floor(scroller?.scrollWidth * (i / 4));
+      smoothScroll(scroller, scrollLeft, true);
+    });
+  });
+
+  scroller?.addEventListener(
+    "scroll",
+    debounce(() => {
+      let index = Math.round((scroller.scrollLeft / scroller.scrollWidth) * 4);
+      setAriaPressed(index);
+      console.log("pressing index", index);
+    }, 200),
+  );
+
+  setAriaLabels();
 </script>
 <style>
   .next {
@@ -129,42 +262,29 @@ const { testmoniels } = Astro.props;
     z-index: 1;
   }
 
-  .slider-nav label {
+  .slider-nav a {
     position: relative;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 24px;
-    background-color: black;
-    opacity: 0.75;
-    transition: opacity ease 250ms;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: gray;
   }
 
   /*  for increasing clicable area  */
-  .slider-nav label:before {
+  .slider-nav a:before {
     content: "";
     position: absolute;
-    width: 2.5rem;
-    height: 3rem;
-    top: -250%;
+    width: 100%;
+    height: 2rem;
+    top: -50%;
     cursor: pointer;
   }
-  input[type="radio"] {
-    visibility: hidden;
-  }
 
-  .slider-nav label {
-    opacity: 1;
-    transform: scale(1.2);
-    color: var(--icon-primary-accent-heavy, #f9710d);
-    background-color: gray;
-  }
-  .slider-nav > label:hover {
-    opacity: 1;
+  .slider-nav a:hover {
     background-color: var(--icon-primary-accent-heavy, #f9710d);
     border: 4px var(--icon-primary-accent-heavy, #f9710d) solid;
   }
-  .slider-nav > label:has(input:checked) {
-    opacity: 1;
+  .slider-nav a[aria-pressed="true"] {
     background-color: var(--icon-primary-accent-heavy, #f9710d);
   }
   p {
