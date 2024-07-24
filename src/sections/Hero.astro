@@ -49,10 +49,10 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
     />
   </div>
   <div class="text-container">
-    <h1>السرعة و الأمان في نقل الأثاث</h1>
-    <p class="first">نقل الإثاث بإسلوب أمن و فعال</p>
-    <p class="main">نجعل نقل الأثاث تجربه سلسة و خالية من المتاعب</p>
-    <p class="second">خدمات نقل الأثاث التي يمكنن الوثوق بها</p>
+    <h1 class="sr-only">السرعة و الأمان في نقل الأثاث</h1>
+    <p class="sr-only">نجعل نقل الأثاث تجربه سلسة و خالية من المتاعب</p>
+    <div class="first" aria-hidden="true"></div>
+    <div class="second" aria-hidden="true"></div>
     <a href="#contactus" class="cta">إبدأ معنا الأن</a>
   </div>
 </header>
@@ -60,6 +60,15 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
   header {
     position: relative;
     height: 100vh;
+  }
+  .sr-only {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
   .text-container {
     width: 80%;
@@ -73,66 +82,16 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
     flex-direction: column;
     gap: 2rem;
   }
-  .first,
-  .second {
-    visibility: hidden;
-    max-height: 0;
-  }
   .text-container h1,
-  p.first {
+  .first {
     font-style: normal;
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
     line-height: normal;
   }
-  .text-container h1 {
-    animation: top 5s ease 0s 1 normal forwards;
-  }
-  p.first {
-    animation: right 3s linear 5s 1 normal forwards;
-  }
-
-  @keyframes top {
-    0% {
-      opacity: 0;
-      transform: translateY(-150px);
-    }
-
-    97% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    98% {
-      opacity: 1;
-    }
-    99% {
-      opacity: 0;
-    }
-    100% {
-      display: none;
-      opacity: 0;
-      visibility: collapse;
-      max-height: 0;
-    }
-  }
-  @keyframes right {
-    0% {
-      visibility: visible;
-      max-height: revert;
-      opacity: 0;
-      transform: translateX(250px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-      visibility: visible;
-      max-height: revert;
-    }
-  }
 
   p.main,
-  p.second {
+  .second {
     color: var(--text-secondary-light, #fff);
     text-align: center;
     font-family: Cairo;
@@ -140,54 +99,6 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-  }
-  p.main {
-    animation: bottom 5s ease 0s 1 normal forwards;
-  }
-  p.second {
-    animation: left 3s linear 5s 1 normal forwards;
-  }
-  @keyframes bottom {
-    0% {
-      opacity: 0;
-      transform: translateY(150px);
-    }
-
-    97% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    98% {
-      opacity: 1;
-    }
-    99% {
-      opacity: 0;
-      visibility: collapse;
-      max-height: 0;
-      display: none;
-      max-height: 0;
-    }
-    100% {
-      max-height: 0;
-      visibility: collapse;
-      opacity: 0;
-      display: none;
-    }
-  }
-  @keyframes left {
-    0% {
-      visibility: visible;
-      max-height: revert;
-      opacity: 0;
-      transform: translateX(-250px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-      visibility: visible;
-      max-height: revert;
-    }
   }
   .text-container a {
     color: white;
@@ -266,7 +177,79 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
       opacity: 0;
     }
   }
-
+  .first,
+  .second {
+    visibility: hidden;
+    text-align: center;
+  }
+  .first:after {
+    visibility: visible;
+    content: "";
+    animation: top 10s linear forwards;
+    display: inline-block;
+  }
+  .second::before {
+    visibility: visible;
+    content: "";
+    animation: bottom 10s linear forwards;
+    display: inline-block;
+  }
+  @keyframes top {
+    0% {
+      opacity: 0;
+      transform: translateY(-150px);
+      content: "السرعة و الأمان في نقل الأثاث";
+    }
+    30% {
+      transform: translate(0px, 0);
+      content: "السرعة و الأمان في نقل الأثاث";
+      opacity: 1;
+    }
+    50% {
+      transform: translate(0px, 0);
+    }
+    60% {
+      transform: translate(0px, 0);
+      opacity: 0;
+    }
+    70% {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0px, 0);
+      content: "نقل الإثاث بإسلوب أمن و فعال";
+    }
+  }
+  @keyframes bottom {
+    0% {
+      opacity: 0;
+      transform: translateY(150px);
+      content: "نجعل نقل الأثاث تجربه سلسة و خالية من المتاعب";
+    }
+    30% {
+      transform: translate(0px, 0);
+      content: "نجعل نقل الأثاث تجربه سلسة و خالية من المتاعب";
+      opacity: 1;
+    }
+    50% {
+      transform: translate(0px, 0);
+    }
+    60% {
+      transform: translate(0px, 0);
+      opacity: 0;
+    }
+    70% {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0px, 0);
+      content: "خدمات نقل الأثاث التي يمكنن الوثوق بها";
+    }
+  }
   /* .image-wrapper::before { */
   /*   content: ""; */
   /*   position: absolute; */
