@@ -28,8 +28,6 @@ content:
         fields:
           - name: name
             type: string
-            options:
-              values: [facebook, instagram, whatsapp, x]
           - name: link
             label: الرابط
             type: string
