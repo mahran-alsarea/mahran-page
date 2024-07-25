@@ -72,4 +72,4 @@ content:
             label: الوصف
           - name: icon
             type: string
-            label: ايقونه
+            hidden: true
