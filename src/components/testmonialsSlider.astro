@@ -161,7 +161,6 @@ const { testmoniels } = Astro.props;
 
   const indicators = document.querySelectorAll(".slider-nav a");
   const scroller = document.querySelector("#scroller ");
-  console.log(indicators, scroller);
 
   function setAriaLabels() {
     indicators.forEach((indicator, i) => {
@@ -173,13 +172,6 @@ const { testmoniels } = Astro.props;
     index = Math.abs(index);
     indicators.forEach((indicator, i) => {
       indicator.setAttribute("aria-pressed", String(!!(i === index)));
-      console.log({
-        indicator,
-        i,
-        index,
-        state: !!(i === index),
-        after: indicator.getAttribute("aria-pressed"),
-      });
     });
     window.location.assign(`#testmonial-${index}`);
   }
@@ -200,7 +192,6 @@ const { testmoniels } = Astro.props;
     debounce(() => {
       let index = Math.round((scroller.scrollLeft / scroller.scrollWidth) * 4);
       setAriaPressed(index);
-      console.log("pressing index", index);
     }, 200),
   );
 

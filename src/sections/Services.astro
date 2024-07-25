@@ -2,7 +2,6 @@
 import { Icon } from "astro-icon/components";
 const data = await Astro.glob("../data.md");
 const { services } = data[0].frontmatter;
-console.log(services)
 ---
 
 <div style="position:relative;">
@@ -15,7 +14,7 @@ console.log(services)
         {
           services.map((service) => (
             <li>
-          <Icon name={service.icon} class="icon" />
+              <Icon name={service.icon} class="icon" />
               <h3>{service.title}</h3>
               <p>{service.desc}</p>
             </li>
