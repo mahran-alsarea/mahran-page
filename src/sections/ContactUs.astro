@@ -5,9 +5,13 @@ const { formLink, waNum } = data[0].frontmatter.contact;
 ---
 
 <section id="contactus">
-  <Image src={import("../assets/contactus.png")} alt="worker" />
+  <Image
+    class="slide-in-left"
+    src={import("../assets/contactus.png")}
+    alt="worker"
+  />
   <div class="wrapper">
-    <h2>هل لديك خطه للنقل ؟</h2>
+    <h2 class="scale-in-center">هل لديك خطه للنقل ؟</h2>
     <p>نحن هنا لمساعدتك</p>
     <form id="contact_form" data-formLink={formLink + waNum}>
       <label
@@ -150,7 +154,7 @@ const { formLink, waNum } = data[0].frontmatter.contact;
     padding: 15px 16px;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     gap: var(--space-sm, 8px);
     align-self: stretch;
   }

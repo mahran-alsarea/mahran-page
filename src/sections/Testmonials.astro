@@ -7,8 +7,8 @@ const { testmoniels } = data[0].frontmatter;
 
 <section id="testmoniels">
   <div class="content-wrapper">
-    <h2>أراء العملاء</h2>
-    <div class="wrapper">
+    <h2 class="scale-in-center">أراء العملاء</h2>
+    <div class="wrapper slide-in-right">
       <TestmonialsSlide testmoniels={testmoniels} />
     </div>
   </div>
@@ -39,22 +39,25 @@ const { testmoniels } = data[0].frontmatter;
     isolation: isolate;
   }
 
-  h2::before {
+  h2.scale-in-center::before {
+    direction: ltr;
     content: "";
     position: absolute;
     bottom: 0;
-    top: 0;
     width: 110%;
     background: var(--icon-primary-accent-heavy, #f9710d);
     height: 0.5em;
-    transform: rotate(-15deg); /* Adjust the angle as needed */
-    transform-origin: right;
+    transform: rotate(-9deg); /* Adjust the angle as needed */
+    transform-origin: left;
     z-index: -1;
+    animation: var(--expand-width-animation);
   }
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
+    z-index: -1;
   }
   .wrapper {
     position: relative;
@@ -79,7 +82,7 @@ const { testmoniels } = data[0].frontmatter;
     .wrapper {
       margin-inline: revert;
       width: revert;
-      align-self:revert;
+      align-self: revert;
     }
     h2 {
       font-size: 1.5rem;

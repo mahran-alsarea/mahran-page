@@ -14,7 +14,7 @@ const { lang, title, disc } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={disc} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="../assets/color-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/mahran-speed.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
   </head>
@@ -22,3 +22,129 @@ const { lang, title, disc } = Astro.props;
     <slot />
   </body>
 </html>
+
+<script>
+  const animationClasses = [
+    "slide-in-left",
+    "slide-in-right",
+    "scale-in-center",
+    "slide-in-top",
+    "slide-in-bottom",
+    "animation-trigger",
+  ];
+  function handleIntersection(entries, observer) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Replay the animation by toggling the class
+        const element = entry.target;
+        const currentClass = Array.from(element.classList).filter((cls) =>
+          animationClasses.includes(cls),
+        );
+        element.classList.remove(...currentClass);
+        void element.offsetWidth; // Trigger reflow
+        element.classList.add(...currentClass);
+
+        // Unobserve the element after it has animated
+        observer.unobserve(entry.target);
+      }
+    });
+  }
+  const observer = new IntersectionObserver(handleIntersection, {
+    root: null, // Use the viewport as the root
+    rootMargin: "0px",
+    threshold: 0.2, // Trigger when 10% of the element is visible
+  });
+
+  // Observe all elements with the specified animation classes
+  animationClasses.forEach((className) => {
+    const elements = document.querySelectorAll(`.${className}`);
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+  });
+</script>
+
+<style is:global>
+  .slide-in-right {
+    animation: slide-in-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .slide-in-left {
+    animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .scale-in-center {
+    animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes scale-in-center {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  .slide-in-top {
+    animation: slide-in-top 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes slide-in-top {
+    0% {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .slide-in-bottom {
+    animation: slide-in-bottom 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes slide-in-bottom {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes expand-width {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  :root {
+    --expand-width-animation: expand-width 1.5s;
+    --slide-in-right-animation: slide-in-right 1s
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    --slide-in-left-animation: slide-in-left 1s
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+</style>

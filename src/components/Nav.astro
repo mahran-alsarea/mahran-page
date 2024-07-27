@@ -2,6 +2,11 @@
 import { Image } from "astro:assets";
 const data = await Astro.glob("../data.md");
 const { phoneNum, location } = data[0].frontmatter.contact;
+interface Props {
+  current?: string;
+}
+
+const { current } = Astro.props;
 ---
 
 <div class="wrapper">
@@ -21,7 +26,10 @@ const { phoneNum, location } = data[0].frontmatter.contact;
       <li><a href="/#aboutus">من نحن</a></li>
       <li><a href="/#services">خدماتنا</a></li>
       <li><a href="/#testmoniels">اراء العملاء</a></li>
-      <li><a href="/المدونة">المدونة</a></li>
+      <li>
+        <a class={current == "blog" ? "current" : ""} href="/المدونة">المدونة</a
+        >
+      </li>
       <li><a href={location}> موقعنا</a></li>
     </ul>
     <a href={"tel:" + phoneNum}>احصل علي عرض الأسعار</a>
@@ -82,6 +90,12 @@ const { phoneNum, location } = data[0].frontmatter.contact;
     font-weight: 500;
     line-height: 24px;
     white-space: nowrap;
+  }
+  a.current {
+    border-radius: 5px;
+    background: var(--bg-secondary-accent-heavy, #006ba6);
+    color: white;
+    padding: 0.5rem 1rem;
   }
   nav > a {
     color: white;

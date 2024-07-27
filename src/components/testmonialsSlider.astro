@@ -32,6 +32,7 @@ const { testmoniels } = Astro.props;
         href={`#testmonial-${idx}`}
         aria-label={"show testmonial " + idx}
         aria-pressed={idx == 0 ? "true" : "false"}
+        role="button"
       />
     ))
   }
@@ -178,7 +179,7 @@ const { testmoniels } = Astro.props;
 
   indicators.forEach((indicator, i) => {
     indicator.addEventListener("click", (e) => {
-      e.preventDefault();
+      //e.preventDefault();
       e.stopPropagation();
       setAriaPressed(i);
       //@ts-expect-error
@@ -192,7 +193,7 @@ const { testmoniels } = Astro.props;
     debounce(() => {
       let index = Math.round((scroller.scrollLeft / scroller.scrollWidth) * 4);
       setAriaPressed(index);
-    }, 200),
+    }, 50),
   );
 
   setAriaLabels();
@@ -255,25 +256,27 @@ const { testmoniels } = Astro.props;
 
   .slider-nav a {
     position: relative;
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
     background-color: gray;
+    border: black solid;
   }
 
   /*  for increasing clicable area  */
   .slider-nav a:before {
     content: "";
     position: absolute;
-    width: 100%;
+    width: 1rem;
     height: 2rem;
     top: -50%;
     cursor: pointer;
   }
-
-  .slider-nav a:hover {
-    background-color: var(--icon-primary-accent-heavy, #f9710d);
-    border: 4px var(--icon-primary-accent-heavy, #f9710d) solid;
+  @media (hover: hover) and (pointer: fine) {
+    .slider-nav a:hover {
+      background-color: var(--icon-primary-accent-heavy, #f9710d);
+      border: 4px var(--icon-primary-accent-heavy, #f9710d) solid;
+    }
   }
   .slider-nav a[aria-pressed="true"] {
     background-color: var(--icon-primary-accent-heavy, #f9710d);

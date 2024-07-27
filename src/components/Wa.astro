@@ -1,14 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
 const data = await Astro.glob("../data.md");
-const { formLink, waNum } = data[0].frontmatter.contact;
+const { phoneNum, formLink, waNum } = data[0].frontmatter.contact;
 ---
 
 <div>
   <a href={formLink + waNum} aria-label="contact us on whatsapp">
     <Icon name="whatsapp" />
   </a>
-  <a href={formLink + waNum} aria-label="contact us on whatsapp">
+  <a href={"tel:" + phoneNum} aria-label="contact us on whatsapp">
     <Icon name="phone" />
   </a>
 </div>
@@ -34,7 +34,8 @@ const { formLink, waNum } = data[0].frontmatter.contact;
   [data-icon="phone"] {
     width: 40px;
     height: 40px;
-    background: var(--icon-secondary-accent-heavy, #006ba6);
+    /* background: var(--icon-secondary-accent-heavy, #006ba6); */
+    background: var(--icon-primary-accent-heavy, #f9710d);
     color: #fff;
     border-radius: 50px;
     text-align: center;

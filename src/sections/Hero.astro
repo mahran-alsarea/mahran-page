@@ -6,10 +6,13 @@ import img1Lqip from "../assets/hero1d.png?lqip";
 import hero2 from "../assets/hero2d.png";
 //@ts-expect-error
 import img2Lqip from "../assets/hero2d.png?lqip";
+import hero3 from "../assets/hero3d.png";
+//@ts-expect-error
+import img3Lqip from "../assets/hero3d.png?lqip";
 const lqipUrl = `url(${img2Lqip.lqip})`;
 ---
 
-<header class="bleed">
+<header class="bleed animated">
   <div class="image-wrapper">
     <Picture
       formats={["avif", "webp"]}
@@ -21,7 +24,7 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
 
         backgroundSize: "cover",
       }}
-      class="image"
+      class="animated"
     />
     <Picture
       formats={["avif", "webp"]}
@@ -33,19 +36,19 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
 
         backgroundSize: "cover",
       }}
-      class="image"
+      class="animated"
     />
     <Picture
       formats={["avif", "webp"]}
-      src={hero1}
+      src={hero3}
       loading="eager"
       alt="image for speedstart employe moving boxes"
       style={{
-        backgroundImage: `url("${img1Lqip.lqip}")`,
+        backgroundImage: `url("${img3Lqip.lqip}")`,
 
         backgroundSize: "cover",
       }}
-      class="image"
+      class="animated"
     />
   </div>
   <div class="text-container">
@@ -56,10 +59,20 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
     <a href="#contactus" class="cta">إبدأ معنا الأن</a>
   </div>
 </header>
+<script>
+  const element = document.querySelector("header.animated");
+  setInterval(() => {
+    element?.classList.toggle("animated");
+    setTimeout(() => element?.classList.toggle("animated"), 100);
+  }, 15000);
+</script>
 <style define:vars={{ lqipUrl }}>
   header {
     position: relative;
     height: 100vh;
+    background-image: var(--lqipUrl);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   .sr-only {
     clip: rect(0 0 0 0);
@@ -144,7 +157,6 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0;
-    animation: change-img-anim 30s infinite;
   }
   .image-wrapper {
     position: relative;
@@ -153,14 +165,18 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
     overflow: hidden;
   }
 
-  picture:nth-of-type(1) {
+  header.animated picture,
+  header.animated img {
+    animation: change-img-anim 15s infinite forwards;
+  }
+  .image-wrapper picture:nth-of-type(1) {
     animation-delay: 0s;
   }
-  picture:nth-of-type(2) {
-    animation-delay: 10s;
+  .image-wrapper picture:nth-of-type(2) {
+    animation-delay: 5s;
   }
-  picture:nth-of-type(3) {
-    animation-delay: 20s;
+  .image-wrapper picture:nth-of-type(3) {
+    animation-delay: 10s;
   }
 
   @keyframes change-img-anim {
@@ -185,80 +201,141 @@ const lqipUrl = `url(${img2Lqip.lqip})`;
   .first:after {
     visibility: visible;
     content: "";
-    animation: top 10s linear forwards;
+    animation: top 15s linear infinite forwards;
     display: inline-block;
   }
   .second::before {
     visibility: visible;
     content: "";
-    animation: bottom 10s linear forwards;
+    animation: bottom 15s linear infinite forwards;
     display: inline-block;
   }
   @keyframes top {
+    /* 0 */
     0% {
       opacity: 0;
       transform: translateY(-150px);
       content: "السرعة و الأمان في نقل الأثاث";
     }
-    30% {
+    9% {
       transform: translate(0px, 0);
       content: "السرعة و الأمان في نقل الأثاث";
       opacity: 1;
     }
-    50% {
+    22% {
       transform: translate(0px, 0);
     }
-    60% {
+    /* 5 */
+    33% {
       transform: translate(0px, 0);
       opacity: 0;
     }
-    70% {
+    40% {
       opacity: 0;
       transform: translateX(200px);
     }
-    100% {
+    55% {
       opacity: 1;
       transform: translate(0px, 0);
-      content: "نقل الإثاث بإسلوب أمن و فعال";
+      content: "نقل الأثاث بأسلوب آمن وفعال";
+    }
+    /* 10 */
+    66% {
+      transform: translate(0px, 0);
+      opacity: 0;
+    }
+    77% {
+      opacity: 0;
+      /* transform: rotateY(20deg) rotateX(35deg) translate(200px, -200px); */
+      transform: translate(200px, -200px);
+    }
+    80% {
+      opacity: 1;
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      content: " تحرك بأمان، تصل بسرعة";
+    }
+    100% {
+      opacity: 1;
+      content: " تحرك بأمان، تصل بسرعة";
     }
   }
   @keyframes bottom {
+    /* 0 */
     0% {
       opacity: 0;
       transform: translateY(150px);
-      content: "نجعل نقل الأثاث تجربه سلسة و خالية من المتاعب";
+      content: "نجعل نقل الأثاث تجربة سلسة وخالية من المتاعب";
     }
-    30% {
+    9% {
       transform: translate(0px, 0);
-      content: "نجعل نقل الأثاث تجربه سلسة و خالية من المتاعب";
+      content: "نجعل نقل الأثاث تجربة سلسة وخالية من المتاعب";
       opacity: 1;
     }
-    50% {
+    22% {
       transform: translate(0px, 0);
     }
-    60% {
+    /* 5 */
+    33% {
       transform: translate(0px, 0);
       opacity: 0;
     }
-    70% {
+    40% {
       opacity: 0;
       transform: translateX(-200px);
     }
-    100% {
+    55% {
       opacity: 1;
       transform: translate(0px, 0);
-      content: "خدمات نقل الأثاث التي يمكنن الوثوق بها";
+      content: "خبراء في النقل السريع والآمن لكل احتياجاتك";
+    }
+    /* 10 */
+    66% {
+      transform: translate(0px, 0);
+      opacity: 0;
+    }
+    77% {
+      opacity: 0;
+      /* transform: rotateY(20deg) rotateX(35deg) translate(200px, -200px) skew(-35deg, 10deg); */
+      transform: translate(200px, -200px);
+    }
+    80% {
+      opacity: 1;
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      content: "خدمات نقل الأثاث التي يمكنك الوثوق بها";
+    }
+    100% {
+      opacity: 1;
+      content: "خدمات نقل الأثاث التي يمكنك الوثوق بها";
     }
   }
-  /* .image-wrapper::before { */
-  /*   content: ""; */
-  /*   position: absolute; */
-  /*   top: 0; */
-  /*   left: 0; */
-  /*   right: 0; */
-  /*   bottom: 0; */
-  /*   background-color: var(--neutral-N900, #212529); */
-  /*   opacity: 0.6; */
-  /*   mix-blend-mode: multiply; */
-  /* } */
+  @-webkit-keyframes tilt-in-fwd-tr {
+    0% {
+      -webkit-transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
+        skew(-35deg, 10deg);
+      transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
+        skew(-35deg, 10deg);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
+        skew(0deg, 0deg);
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      opacity: 1;
+    }
+  }
+  @keyframes tilt-in-fwd-tr {
+    0% {
+      -webkit-transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
+        skew(-35deg, 10deg);
+      transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
+        skew(-35deg, 10deg);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
+        skew(0deg, 0deg);
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      opacity: 1;
+    }
+  }
 </style>
