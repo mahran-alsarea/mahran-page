@@ -38,7 +38,7 @@ const { lang, title, disc } = Astro.props;
         // Replay the animation by toggling the class
         const element = entry.target;
         const currentClass = Array.from(element.classList).filter((cls) =>
-          animationClasses.includes(cls),
+          animationClasses.includes(cls as string),
         );
         element.classList.remove(...currentClass);
         void element.offsetWidth; // Trigger reflow
