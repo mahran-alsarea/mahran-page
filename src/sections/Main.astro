@@ -2,6 +2,9 @@
 import { Image } from "astro:assets";
 ---
 
+<div class="text-container">
+  <h1>المدونات</h1>
+</div>
 <main>
   <div>
     <Image
@@ -35,6 +38,32 @@ import { Image } from "astro:assets";
   </div>
 </main>
 <style>
+  div.text-container {
+    display: flex;
+    max-width: var(--container-width);
+    padding: var(--container-inline);
+    margin-inline: auto;
+  }
+  h1 {
+    font-family: cairo;
+    position: relative;
+    width: fit-content;
+  }
+  h1::before {
+    direction: ltr;
+    content: "";
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    left: 0;
+    background: var(--orange-O50, orange);
+    height: 0.5em;
+    transform: rotate(-10deg); /* Adjust the angle as needed */
+    transform-origin: left;
+    z-index: -1;
+    animation: var(--expand-width-animation);
+  }
+
   main {
     max-width: var(--container-width);
     padding: var(--container-inline);
