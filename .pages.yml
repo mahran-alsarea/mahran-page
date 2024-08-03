@@ -59,7 +59,8 @@ content:
             label: الوصف
           - name: icon
             type: string
-            values: [delivary, commerial, packaging, furnature, move, factory]
+            options:
+                    values: [delivary, commerial, packaging, furnature, move, factory]
       - name: features
         label: features
         type: object
@@ -73,4 +74,5 @@ content:
             label: الوصف
           - name: icon
             type: string
-            values: [1, 2, 3, 4]
+            options:
+                  values: [1, 2, 3, 4]
