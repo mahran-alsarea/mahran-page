@@ -60,7 +60,7 @@ content:
           - name: icon
             type: string
             options:
-                    values: [delivary, commerial, packaging, furnature, move, factory]
+              values: [delivary, commerial, packaging, furnature, move, factory]
       - name: features
         label: features
         type: object
@@ -75,4 +75,4 @@ content:
           - name: icon
             type: string
             options:
-                  values: [1, 2, 3, 4]
+             values: [1, 2, 3, 4]
