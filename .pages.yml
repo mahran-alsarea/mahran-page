@@ -17,7 +17,7 @@ content:
           - name: formLink
             type: string
             hidden: true
-            default: wa.me/+
+            default: https://wa.me/+966
           - name: location
             type: string
             label: الموقع
@@ -45,6 +45,7 @@ content:
           - name: avatar
             type: string
             hidden: true
+            default: avatar
       - name: services
         label: services
         type: object
@@ -58,7 +59,7 @@ content:
             label: الوصف
           - name: icon
             type: string
-            hidden: true
+            values: [delivary, commerial, packaging, furnature, move, factory]
       - name: features
         label: features
         type: object
@@ -72,4 +73,4 @@ content:
             label: الوصف
           - name: icon
             type: string
-            hidden: true
+            values: [1, 2, 3, 4]
